@@ -16,15 +16,14 @@ public class Main {
         department.setPayDay(sc.nextInt());
         sc.nextLine(); // consumir linha.
 
-        Address address = new Address();
-
-        System.out.print("Email: ");
-        address.setEmail(sc.nextLine());
+        String email = getValidEmail(sc);
 
         System.out.print("Telefone: ");
-        address.setPhone(sc.nextLine());
+        String telefone = sc.nextLine();
 
-        department.setAddress(address);
+        Address address1 = new Address(email,telefone);
+
+        department.setAddress(address1);
 
         System.out.println();
 
@@ -60,8 +59,25 @@ public class Main {
         for (Employee emp : dept.getEmp()) {
             System.out.println(" - " + emp.getName()
                     + " - " + " Salário: "
-                    + emp.getSalary());
+                    + String.format("%.2f",emp.getSalary()));
         }
         System.out.println("Para duvidas favor entrar em contato: " + dept.getAddress().getEmail());
+    }
+    public static String getValidEmail(Scanner sc){
+        String email = "";
+        boolean validEmail = false;
+
+        while(!validEmail){
+            System.out.print("Email: ");
+            email = sc.nextLine();
+            try {
+                Address address = new Address();
+                address.setEmail(email);
+                validEmail = true;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return email;
     }
 }
