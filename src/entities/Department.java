@@ -23,6 +23,9 @@ public class Department {
     }
 
     public void setName(String name) {
+        if(name == null || name.trim().isEmpty()){
+            throw  new IllegalArgumentException("Name can't be null or empty");
+        }
         this.name = name;
     }
 
@@ -31,6 +34,9 @@ public class Department {
     }
 
     public void setPayDay(Integer payDay) {
+        if(payDay == null || payDay <=0 || payDay > 31){
+            throw new IllegalArgumentException("Payday must be between 1 and 31");
+        }
         this.payDay = payDay;
     }
 
@@ -45,6 +51,7 @@ public class Department {
     public List<Employee> getEmp() {
         return emp;
     }
+
     public void addEmployee(Employee employee){
         emp.add(employee);
     }
