@@ -16,13 +16,14 @@ public class Main {
         department.setPayDay(sc.nextInt());
         sc.nextLine(); // consumir linha.
 
+        Address address = new Address();
+
         System.out.print("Email: ");
-        String email = sc.nextLine();
+        address.setEmail(sc.nextLine());
 
         System.out.print("Telefone: ");
-        String telefone = sc.nextLine();
+        address.setPhone(sc.nextLine());
 
-        Address address = new Address(email,telefone);
         department.setAddress(address);
 
         System.out.println();
@@ -40,11 +41,12 @@ public class Main {
             System.out.print("Salario: ");
             double salary = sc.nextDouble();
 
+            sc.nextLine(); //consumir linha;
             Employee emp = new Employee(name, salary);
 
             department.addEmployee(emp);
         }
-
+        showReport(department);
         sc.close();
     }
 
@@ -53,6 +55,7 @@ public class Main {
         System.out.println("Departamento : " + dept.getName());
         System.out.println("Total de pagamentos : "
                 + String.format("%.2f", dept.payroll()));
+        System.out.println("Dia do pagamento: " + dept.getPayDay());
         System.out.println("Funcionários: ");
         for (Employee emp : dept.getEmp()) {
             System.out.println(" - " + emp.getName()
