@@ -15,13 +15,6 @@ public class Employee {
         return name;
     }
 
-    public void setName(String name) {
-        if(name == null || name.trim().isEmpty()){
-            throw new IllegalArgumentException("Name Can't be null or empty ");
-        }
-        this.name = name;
-    }
-
     public Double getSalary() {
         return salary;
     }
